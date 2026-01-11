@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dagens Vibe - Er det en god dag?</title>
+    <meta name="description" content="En intelligent analyse av dagens kvalitet basert på vær, nyheter, marked og strømpriser i Norge.">
+    <meta name="theme-color" content="#0a0f1a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1 class="logo">Dagens<span>Vibe</span></h1>
+            <div class="header-right">
+                <div class="date-display" id="currentDate">Laster...</div>
+                <select class="location-select" id="locationSelect" aria-label="Velg lokasjon">
+                    <option value="NO1">Oslo</option>
+                </select>
+            </div>
+        </header>
+
+        <!-- Main Score -->
+        <section class="main-score-section">
+            <div class="score-card main-score">
+                <div class="score-circle">
+                    <svg viewBox="0 0 100 100">
+                        <defs>
+                            <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color: var(--primary)" />
+                                <stop offset="100%" style="stop-color: #a855f7" />
+                            </linearGradient>
+                        </defs>
+                        <circle class="bg" cx="50" cy="50" r="45"></circle>
+                        <circle class="progress" cx="50" cy="50" r="45" id="scoreProgress"></circle>
+                    </svg>
+                    <div class="score-content">
+                        <span class="score-value loading" id="mainScoreValue">--</span>
+                        <span class="score-label">Total Score</span>
+                    </div>
+                </div>
+                <div class="score-status">
+                    <h2 id="scoreStatusText">Analyserer dagen...</h2>
+                    <p id="scoreDescription">Henter data fra norske kilder for å vurdere din dag.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Factors Grid -->
+        <section class="factors-grid">
+            <!-- Weather -->
+            <div class="factor-card" id="weatherCard">
+                <div class="factor-header">
+                    <div class="factor-icon" id="weatherIcon">🌤️</div>
+                    <h3>Vær</h3>
+                </div>
+                <div class="factor-val" id="weatherVal">
+                    <span class="skeleton skeleton-text"></span>
+                </div>
+                <div class="factor-bar">
+                    <div class="fill" id="weatherBar"></div>
+                </div>
+            </div>
+
+            <!-- News -->
+            <div class="factor-card" id="newsCard">
+                <div class="factor-header">
+                    <div class="factor-icon" id="newsIcon">📰</div>
+                    <h3>Nyheter</h3>
+                </div>
+                <div class="factor-val" id="newsVal">
+                    <span class="skeleton skeleton-text"></span>
+                </div>
+                <div class="factor-bar">
+                    <div class="fill" id="newsBar"></div>
+                </div>
+            </div>
+
+            <!-- Market -->
+            <div class="factor-card" id="marketCard">
+                <div class="factor-header">
+                    <div class="factor-icon" id="marketIcon">📊</div>
+                    <h3>Marked</h3>
+                </div>
+                <div class="factor-val" id="marketVal">
+                    <span class="skeleton skeleton-text"></span>
+                </div>
+                <div class="factor-bar">
+                    <div class="fill" id="marketBar"></div>
+                </div>
+            </div>
+
+            <!-- Energy -->
+            <div class="factor-card" id="energyCard">
+                <div class="factor-header">
+                    <div class="factor-icon" id="energyIcon">⚡</div>
+                    <h3>Strømpris</h3>
+                </div>
+                <div class="factor-val" id="energyVal">
+                    <span class="skeleton skeleton-text"></span>
+                </div>
+                <div class="factor-bar">
+                    <div class="fill" id="energyBar"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Section -->
+        <section class="interactive-section">
+            <!-- Vibes -->
+            <div class="vibes-card">
+                <h3>Hvordan føler du deg?</h3>
+                <p>Din egen vurdering påvirker totalen.</p>
+                <div class="vibe-buttons">
+                    <button class="vibe-btn" data-vibe="bad" aria-label="Dårlig dag">😫</button>
+                    <button class="vibe-btn" data-vibe="meh" aria-label="Helt ok">😐</button>
+                    <button class="vibe-btn" data-vibe="good" aria-label="Bra dag">😊</button>
+                    <button class="vibe-btn" data-vibe="great" aria-label="Fantastisk dag">🔥</button>
+                </div>
+            </div>
+
+            <!-- History -->
+            <div class="history-card">
+                <h3>Tidligere dager</h3>
+                <div class="history-list" id="historyList">
+                    <div class="history-item placeholder">Ingen historikk ennå</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>Data fra Open-Meteo, NRK, Alternative.me & hvakosterstrommen.no</p>
+        </footer>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
